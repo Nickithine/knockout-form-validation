@@ -15,6 +15,8 @@
 <body>
     <div class="container-icaro col-md-4">
         <form class="needs-validation col-md-12" novalidate>
+
+            <!-- ko if: todoForm -->
             <div class="form-row">
                 <div class="col-md-6 mb-6">
                     <label for="validationCustom01">Nome</label>
@@ -113,8 +115,15 @@
                     </div>
                 </div>
             </div>
+            <!-- /ko -->
             <br />
+            <!-- ko if: buttonDisable  -->
+            <button  data-bind="click: EnviarDados" disabled class="btn btn-primary" type="submit">Enviar Formulário</button>
+            <!-- /ko -->
+
+            <!-- ko if: buttonActive  -->
             <button  data-bind="click: EnviarDados" class="btn btn-primary" type="submit">Enviar Formulário</button>
+            <!-- /ko -->
         </form>
     </div>
 

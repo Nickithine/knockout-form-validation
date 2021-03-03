@@ -7,6 +7,11 @@ function AppViewModel() {
 
     //Declaração dos Observables
 
+    self.todoForm = ko.observable(true);
+    self.buttonDisable = ko.observable(true);
+
+    self.buttonActive = ko.observable(false);
+
     self.firstName = ko.observable("").extend({ required: true});
 
     self.lastName = ko.observable("").extend({
@@ -71,6 +76,28 @@ function AppViewModel() {
             };
         });
     };
+    //Verifica se os campos obrigatórios estão vazios para habilitar ou desabilitar o botao
+    function inputsVerification(){
+        if(self.firstName() && self.lastName() && self.ddd() && self.phone() && self.cep() && self.address() && self.number() && self.district() && self.city() && self.state()){
+
+            //Esconde botão desabilitado e dá show no botão ativo
+            self.buttonDisable(false);
+            self.buttonActive(true);
+        }else{
+            //Da show no botão desabilitado e esconde o botão ativo
+            self.buttonDisable(true);
+            self.buttonActive(false);
+        };
+    }
+
+    //Cria um evento para sempre ouvir os movimentos dos inputs
+    var inputs = document.querySelectorAll("input");
+
+    inputs.forEach(function(input) {
+        input.addEventListener("mouseleave", function() {
+            inputsVerification();
+        });
+    });
 
     self.EnviarDados = function(){
 
