@@ -16,7 +16,6 @@
     <div class="container-icaro col-md-4">
         <form class="needs-validation col-md-12" novalidate>
 
-            <!-- ko if: todoForm -->
             <div class="form-row">
                 <div class="col-md-6 mb-6">
                     <label for="validationCustom01">Nome</label>
@@ -55,9 +54,9 @@
                 <div class="col-md-8 mb-8">
                     <label for="validationCustom06">Cep</label>
                     <input data-bind="value: cep" type="text" class="form-control" id="validationCustom06" placeholder="Cep" required>
-                    <div class="invalid-feedback">
-                        O campo cep é obrigatório!
-                    </div>
+                    <p data-bind="visible: cepIncorreto">
+                        O CEP informado é inválido!
+                    </p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="validationCustom10" style="color:#fff">CEP</label>
@@ -115,15 +114,8 @@
                     </div>
                 </div>
             </div>
-            <!-- /ko -->
             <br />
-            <!-- ko if: buttonDisable  -->
-            <button  data-bind="click: EnviarDados" disabled class="btn btn-primary" type="submit">Enviar Formulário</button>
-            <!-- /ko -->
-
-            <!-- ko if: buttonActive  -->
-            <button  data-bind="click: EnviarDados" class="btn btn-primary" type="submit">Enviar Formulário</button>
-            <!-- /ko -->
+            <button  data-bind="click: EnviarDados, disable: buttonDisable" class="btn btn-primary" type="submit">Enviar Formulário</button>
         </form>
     </div>
 
